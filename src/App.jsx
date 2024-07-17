@@ -6,6 +6,7 @@ import { Footer, Header } from "./components"
 import { Outlet } from "react-router-dom"
 
 function App() {
+  // initialize loading to true as currentUser is called everytime website loads so we show a loading icon for that duration
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
 
