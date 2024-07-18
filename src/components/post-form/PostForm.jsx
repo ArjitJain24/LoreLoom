@@ -56,6 +56,7 @@ function PostForm({post}) {
         }
     }
 
+    // in slug we basically want to convert title to a - separated value so we convert any white spaces or symbol to -
     const slugTransform = useCallback((value)=>{
         if(value && typeof value === 'string'){
             return value
@@ -83,12 +84,16 @@ function PostForm({post}) {
     return (
         <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
             <div className="w-2/3 px-2">
+
+            {/* input for adding title of post */}
                 <Input
                     label="Title :"
                     placeholder="Title"
                     className="mb-4"
                     {...register("title", { required: true })}
                 />
+
+                {/* input for creating slug */}
                 <Input
                     label="Slug :"
                     placeholder="Slug"
@@ -98,8 +103,12 @@ function PostForm({post}) {
                         setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
                     }}
                 />
+
+                {/* Real Time Editor */}
                 <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
             </div>
+
+            {/* option to upload image */}
             <div className="w-1/3 px-2">
                 <Input
                     label="Featured Image :"
