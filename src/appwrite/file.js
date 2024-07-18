@@ -8,8 +8,8 @@ export class FileService {
 
   constructor() {
     this.client
-      .setEndpoint(config.appwriteURL) // API endpoint
-      .setProject(config.appwriteProjectID); // project ID
+      .setEndpoint(config.appwriteUrl) // API endpoint
+      .setProject(config.appwriteProjectId); // project ID
 
     // create a database and storage
     this.databases = new Databases(this.client);
@@ -21,7 +21,7 @@ export class FileService {
   async uploadFile(file) {
     try {
       return await this.storage.createFile(
-        config.appwriteBucketID,
+        config.appwriteBucketId,
         ID.unique(),
         file
       );
@@ -32,9 +32,9 @@ export class FileService {
   }
 
   //   delete a file
-  async deleteFile(fileID) {
+  async deleteFile(fileId) {
     try {
-      await this.storage.deleteFile(config.appwriteBucketID, fileID);
+      await this.storage.deleteFile(config.appwriteBucketId, fileId);
       return true;
     } catch (error) {
       console.log("Appwrite Service :: deleteFile :: error", error);
@@ -43,8 +43,8 @@ export class FileService {
   }
 
   //   preview  a file-> no need to make it async await as response is very fast(documentation mai use nahi kiya)
-  getFilePreview(fileID) {
-    return this.storage.getFilePreview(config.appwriteBucketID, fileID);
+  getFilePreview(fileId) {
+    return this.storage.getFilePreview(config.appwriteBucketId, fileId);
   }
 }
 

@@ -8,11 +8,11 @@ import { Client, Account, ID } from "appwrite";
 export class AuthService {
   client = new Client();
   account;
+
   constructor() {
     this.client
-      .setEndpoint(config.appwriteURL) // API endpoint
-      .setProject(config.appwriteProjectID); // project ID
-
+      .setEndpoint(config.appwriteUrl)
+      .setProject(config.appwriteProjectId);
     this.account = new Account(this.client);
   }
 
@@ -50,9 +50,8 @@ export class AuthService {
     try {
       return await this.account.get();
     } catch (error) {
-      console.log("Appwrite Service :: getCurrentUser :: error", error);
+      console.log("Appwrite serive :: getCurrentUser :: error", error);
     }
-
     // if not able to find account
     return null;
   }

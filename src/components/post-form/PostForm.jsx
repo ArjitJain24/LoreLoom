@@ -8,14 +8,14 @@ import { useNavigate } from 'react-router-dom'
 
 function PostForm({post}) {
 
-    const {register, handleSubmit, watch, setValue, control, getValues} = useForm({
-        defaultValues:{
+    const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
+        defaultValues: {
             title: post?.title || "",
-            slug: post?.slug || "",
-            content : post?.content || "",
-            status : post?.status || 'active'
-        }
-    })
+            slug: post?.$id || "",
+            content: post?.content || "",
+            status: post?.status || "active",
+        },
+    });
 
     const navigate = useNavigate()
     const userData = useSelector(state => state.auth.userData)
@@ -71,14 +71,12 @@ function PostForm({post}) {
     useEffect(()=>{
         const subscription = watch((value, {name})=>{
             if ( name === 'title'){
-                setValue('slug', slugTransform(value.title, {shouldValidate: true}))
+                setValue('slug', slugTransform(value.title), {shouldValidate: true})
             }
         })
 
 
-        return ()=>{
-            subscription.unsubscribe()
-        }
+        return ()=> subscription.unsubscribe()
     }, [watch, slugTransform, setValue])
 
 

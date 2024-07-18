@@ -1,4 +1,5 @@
 import React from 'react'
+import config from '../config/config'
 
 // to create a real time editor 
 import { Editor } from '@tinymce/tinymce-react'
@@ -24,6 +25,7 @@ export default function RTE({name, control, label, defaultValue=""}) {
     render={({field: {onChange}}) => (
         // creates an editor
         <Editor
+        apiKey={config.tinymceKey}
         initialValue={defaultValue}
         init={{
             height: 500,

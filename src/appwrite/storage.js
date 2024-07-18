@@ -9,8 +9,8 @@ export class StorageService {
 
   constructor() {
     this.client
-      .setEndpoint(config.appwriteURL) // API endpoint
-      .setProject(config.appwriteProjectID); // project ID
+      .setEndpoint(config.appwriteUrl) // API endpoint
+      .setProject(config.appwriteProjectId); // project ID
 
     // create a database and storage
     this.databases = new Databases(this.client);
@@ -18,18 +18,18 @@ export class StorageService {
   }
 
   // creating a post in our app
-  async createPost({ title, slug, content, featuredImage, status, userID }) {
+  async createPost({ title, slug, content, featuredImage, status, userId }) {
     try {
       return await this.databases.createDocument(
-        config.appwriteDatabaseID,
-        config.appwriteCollectionID,
+        config.appwriteDatabaseId,
+        config.appwriteCollectionId,
         slug, // document ID
         {
           title,
           content,
           featuredImage,
           status,
-          userID,
+          userId,
         }
       );
     } catch (error) {
@@ -41,8 +41,8 @@ export class StorageService {
   async updatePost(slug, { title, content, featuredImage, status }) {
     try {
       return await this.databases.updateDocument(
-        config.appwriteDatabaseID,
-        config.appwriteCollectionID,
+        config.appwriteDatabaseId,
+        config.appwriteCollectionId,
         slug,
         {
           title,
@@ -60,8 +60,8 @@ export class StorageService {
   async deletePost(slug) {
     try {
       await this.deleteDocument(
-        config.appwriteDatabaseID,
-        config.appwriteCollectionID,
+        config.appwriteDatabaseId,
+        config.appwriteCollectionId,
         slug
       );
       return true;
@@ -75,8 +75,8 @@ export class StorageService {
   async getPost(slug) {
     try {
       return await this.databases.getDocument(
-        config.appwriteDatabaseID,
-        config.appwriteCollectionID,
+        config.appwriteDatabaseId,
+        config.appwriteCollectionId,
         slug
       );
     } catch (error) {
@@ -90,8 +90,8 @@ export class StorageService {
   async getPosts(queries = [Query.equal("status", "active")]) {
     try {
       return await this.databases.listDocuments(
-        config.appwriteDatabaseID,
-        config.appwriteCollectionID,
+        config.appwriteDatabaseId,
+        config.appwriteCollectionId,
         queries
       );
     } catch (error) {
