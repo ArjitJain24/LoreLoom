@@ -13,7 +13,7 @@ function Signup() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [error, setError] = useState("")
-    const [register, handleSubmit] = useForm();
+    const {register, handleSubmit} = useForm();
 
 
     // method to call by handleSubmit when form submitted

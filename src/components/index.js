@@ -4,10 +4,10 @@ import Logo from "./Logo";
 import Container from "./Container/Container";
 import LogoutBtn from "./Header/LogoutBtn";
 import Button from "./Button";
-import Input from "Input";
+import Input from "./Input";
 import PostCard from "./PostCard";
 import Select from "./Select";
-import AuthLayout from "./AuthLayout";
+import Protected from "./AuthLayout";
 import RTE from "./RTE";
 import PostForm from "./post-form/PostForm";
 import Signup from "./Signup";
@@ -23,7 +23,7 @@ export {
   Input,
   PostCard,
   Select,
-  AuthLayout,
+  Protected,
   RTE,
   PostForm,
   Signup,

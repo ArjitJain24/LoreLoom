@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import {storageService} from "../appwrite/storage";
-import fileService, { FileService } from "../appwrite/file";
+import storageService from "../appwrite/storage";
+import fileService from "../appwrite/file";
 import { Button, Container } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";

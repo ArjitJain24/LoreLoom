@@ -14,7 +14,7 @@ const Input = forwardRef(
         return (
             <div className='w-full'>
 
-                // if label is given then display it
+                {/* // if label is given then display it */}
                 {label && <label
                 className='inline-block mb-1 pl-1'
                 htmlFor={id}>

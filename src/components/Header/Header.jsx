@@ -7,40 +7,42 @@ import { useNavigate } from 'react-router-dom'
 function Header() {
 
     // get user authenticaion status from store
-  const authStatus = useSelector(state => state.status)
+  const authStatus = useSelector(state => state.auth.status)
 
     // give it a parameter of url as to where to take it (can be done by Link too)
   const navigate = useNavigate()
 
     // creating nav bar (slug represent the page it routes to)
     // if authStatus is true means user is loggen in then we show home, all posts and add post but if it is false means user is not logged in then we show home, login, signup 
-  const navItems = [
+    
+    const navItems = [
+      {
+        name: 'Home',
+        slug: "/",
+        active: true
+      }, 
+      {
+        name: "Login",
+        slug: "/login",
+        active: !authStatus,
+    },
     {
-      name: 'Home',
-      slug: "/",
-      active: true
-    }, 
+        name: "Signup",
+        slug: "/signup",
+        active: !authStatus,
+    },
     {
-      name: "Login",
-      slug: "/login",
-      active: !authStatus,
-  },
-  {
-      name: "Signup",
-      slug: "/signup",
-      active: !authStatus,
-  },
-  {
-      name: "All Posts",
-      slug: "/all-posts",
-      active: authStatus,
-  },
-  {
-      name: "Add Post",
-      slug: "/add-post",
-      active: authStatus,
-  },
-  ]
+        name: "All Posts",
+        slug: "/all-posts",
+        active: authStatus,
+    },
+    {
+        name: "Add Post",
+        slug: "/add-post",
+        active: authStatus,
+    },
+    ]
+  
 
 
   return (
@@ -67,7 +69,7 @@ function Header() {
             
             )}
             
-            // if authstatus is true then display logout button
+            {/* if authstatus is true then display logout button */}
             {authStatus && (
               <li>
                 <LogoutBtn />

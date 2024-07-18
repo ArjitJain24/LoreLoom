@@ -13,8 +13,8 @@ export class StorageService {
       .setProject(config.appwriteProjectID); // project ID
 
     // create a database and storage
-    this.databases = new Databases(client);
-    this.storage = new Storage(client);
+    this.databases = new Databases(this.client);
+    this.storage = new Storage(this.client);
   }
 
   // creating a post in our app

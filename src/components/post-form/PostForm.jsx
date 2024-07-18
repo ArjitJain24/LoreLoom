@@ -18,7 +18,7 @@ function PostForm({post}) {
     })
 
     const navigate = useNavigate()
-    const userData = useSelector(state => state.userData)
+    const userData = useSelector(state => state.auth.userData)
 
     const submit = async (data)=>{
         if(post){
@@ -33,9 +33,10 @@ function PostForm({post}) {
             }
 
             // updating the rest of the post details in database
-            const dbPost = await storageService.updatePost(post.$id, {
+            const dbPost = await appwriteService.updatePost(post.$id, {
                 ...data,
-            featuredImage: file ? file.$id : undefined})
+                featuredImage: file ? file.$id : undefined,
+            });
 
             if(dbPost) navigate(`/post/${dbPost.$id}`) 
         }
